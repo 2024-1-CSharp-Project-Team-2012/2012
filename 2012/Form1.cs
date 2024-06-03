@@ -12,11 +12,14 @@ namespace _2012
 {
     public partial class Form1 : Form
     {
+        private GameLogic gameLogic;
+
         public Form1()
         {
             InitializeComponent();
             this.Width = 1000;
             this.Height = 800;
+            gameLogic = new GameLogic();
         }
 
         private void btnstart_Click(object sender, EventArgs e)
@@ -138,6 +141,11 @@ namespace _2012
         private void btnstop_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
