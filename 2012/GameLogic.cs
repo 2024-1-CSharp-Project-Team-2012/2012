@@ -27,16 +27,6 @@ namespace _2012
             }
         }
 
-        public bool PlacePiece(int position, Piece player)
-        {
-            if (board[position] == Piece.Empty)
-            {
-                board[position] = player;
-                return true;
-            }
-            return false;
-        }
-
         // 말 제거 로직 
         public bool RemovePiece(int position)
         {
@@ -46,8 +36,30 @@ namespace _2012
         // 승리 조건 로직
         public bool CheckWin(Piece player)
         {
-          
+            Piece opponent = (player == Piece.Player1) ? Piece.Player2 : Piece.Player1;
+            int opponentPiecesCount = board.Count(p => p == opponent);
+
+            // 상대방 말의 수가 2개 이하인 경우
+            if (opponentPiecesCount <= 2)
+            {
+                return true;
+            }
+
+            // 상대방이 더 이상 움직일 수 없는 경우
+            if (!CanMove(opponent))
+            {
+                return true;
+            }
+
             return false;
         }
+
+
+        private bool CanMove(Piece opponent)
+        {
+            return false;
+        }
+
     }
+
 }
