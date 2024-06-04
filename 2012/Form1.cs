@@ -13,6 +13,7 @@ namespace _2012
     public partial class Form1 : Form
     {
         private GameLogic gameLogic;
+        private GameLogic.Piece currentPlayer; // 현재 플레이어를 나타내는 변수
 
         public Form1()
         {
@@ -20,6 +21,7 @@ namespace _2012
             this.Width = 1000;
             this.Height = 800;
             gameLogic = new GameLogic();
+            currentPlayer = GameLogic.Piece.Player1;  // 초기 플레이어 설정
         }
 
         private void btnstart_Click(object sender, EventArgs e)
@@ -135,12 +137,38 @@ namespace _2012
             g.FillEllipse(brush, point23);
             g.FillEllipse(brush, point24);
 
+            // 게임 로직을 처리하는 부분 후에 승리 조건 검사
+            // Win_Message();
+
             pen.Dispose();
         }
 
         private void btnstop_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        // 승리 메시지 표시 
+        private void Win_Message()
+        {
+            if (gameLogic.CheckWin(currentPlayer))
+            {
+                MessageBox.Show($"축하드립니다! {GetPlayerName(currentPlayer)}이 승리하였습니다.", "Game Over",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private string GetPlayerName(GameLogic.Piece player)
+        {
+            switch (player)
+            {
+                case GameLogic.Piece.Player1:
+                    return "Player 1";
+                case GameLogic.Piece.Player2:
+                    return "Player 2";
+                default:
+                    return "Unknown Player";
+            }
         }
     }
 }

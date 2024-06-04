@@ -54,12 +54,10 @@ namespace _2012
             return false;
         }
 
-
-        private bool CanMove(Piece opponent)
+        // 움직임 가능성 체크 : 미완성
+        public bool CanMove(Piece player)
         {
             return false;
         }
-
     }
-
 }
